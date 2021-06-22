@@ -1,0 +1,8 @@
+{
+"reporter": "cypress-testrail-reporter",
+  "reporterOptions": {
+    "host": "https://adjust.testrail.io",
+    "projectId": 12,
+    "suiteId": 48
+  }
+}

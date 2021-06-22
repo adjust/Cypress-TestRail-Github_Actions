@@ -1,0 +1,55 @@
+name: E2E Tests
+
+on:
+  workflow_dispatch:
+    inputs:
+      repo:
+        description: 'Repository that triggers the event'
+        required: false
+      user:
+        description: 'User that triggers the event'
+        required: false
+      run_id:
+        description: 'Workflow run ID that triggers the event'
+        required: false
+
+env:
+  SLACK_WEBHOOK_URL: ${{ secrets.AUTOMATE_SLACK_WEBHOOK }}
+  CYPRESS_TESTRAIL_REPORTER_USERNAME: ${{ secrets.TESTRAIL_USERNAME }}
+  CYPRESS_TESTRAIL_REPORTER_PASSWORD: ${{ secrets.TESTRAIL_PASSWORD }}
+
+jobs:
+  cancel-running-e2e:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Cancel running E2E tests
+        uses: rokroskar/workflow-run-cleanup-action@v0.2.2
+        env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+
+  e2e-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    needs: cancel-running-e2e
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Install Cypress and run Cypress Tests
+        uses: cypress-io/github-action@v2
+        env:
+          DEBUG: "false"
+        with:
+          install-command: npm i
+          spec: cypress/integration/**
+
+      - name: Send Slack notification
+        if: github.event.inputs.repo && failure()
+        uses: adjust/github-actions-slack@v1.2.4
+        with:
+          status: ${{ job.status }}
+          repo: ${{ github.event.inputs.repo }}
+          user: ${{ github.event.inputs.user }}
+          run_id: ${{ github.event.inputs.run_id }}
