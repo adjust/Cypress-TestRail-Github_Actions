@@ -52,7 +52,7 @@ jobs:
         with:
           install: false
           spec: cypress/integration/simple_tests/*
-          env: "testRailSuiteId=${SuiteId}"
+          env: "testRailSuiteId=${{ SuiteId }}"
 
       - name: Send Slack notification
         if: github.event.inputs.repo && failure()
