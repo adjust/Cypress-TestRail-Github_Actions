@@ -37,13 +37,21 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Install Cypress and run Cypress Tests
+      - name: Cypress Tests
+        uses: cypress-io/github-action@v2
+        with:
+          install-command: npm i
+          # just perform install
+          runTests: false
+
+      - name: Cypress Tests
         uses: cypress-io/github-action@v2
         env:
           DEBUG: "false"
         with:
-          install-command: npm i
-          spec: cypress/integration/**
+          install: false
+          spec: cypress/integration/simple_tests/*.spec.js
+          env: "testRailSuiteId=48"
 
       - name: Send Slack notification
         if: github.event.inputs.repo && failure()
