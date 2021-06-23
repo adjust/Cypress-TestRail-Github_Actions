@@ -51,7 +51,7 @@ jobs:
 
         with:
           install: false
-          spec: cypress/integration/simple_tests/*.js
+          spec: "cypress/integration/simple_tests/*.js"
           env: "testRailSuiteId=48"
 
       - name: Send Slack notification
