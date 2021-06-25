@@ -1,0 +1,1 @@
+48:cypress/integration/simple_tests/*.js
