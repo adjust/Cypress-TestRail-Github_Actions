@@ -14,18 +14,11 @@
     1.  TESTRAIL_USERNAME
     1.  TESTRAIL_PASSWORD
    
-1. Modify workflow by copy and paste for each test case
-```yaml
-      - name: Cypress Tests
-        uses: cypress-io/github-action@v2
-        env:
-          DEBUG: "false"
-
-        with:
-          install: false # installed previously
-          spec: "cypress/integration/simple_tests/*.js"  # set path to your test case
-          env: "testRailSuiteId=48" # set suiteId by replace 48
+1. Add to file **test_cases.txt** lines with testRailIds and Specs:
 ```
+48:cypress/integration/simple_tests/*.js
+```
+Where 48 is testRailId and cypress/integration/simple_tests/*.js - spec for cypress.
 
 # Reporting
 [Reporting Library to TestRail](https://www.npmjs.com/package/cypress-testrail-reporter)
