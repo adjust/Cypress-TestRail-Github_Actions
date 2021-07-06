@@ -7,7 +7,7 @@ context('Actions', () => {
 
   // https://on.cypress.io/interacting-with-elements
 
-  it('C4949 C4950 C4966 .type() - type into a DOM element', () => {
+  it('C4949 .type() - type into a DOM element', () => {
     // https://on.cypress.io/type
     cy.get('.action-email')
         .type('fake@email.com').should('have.value', 'fake@email.com')
@@ -32,4 +32,20 @@ context('Actions', () => {
         .type('disabled error checking', {force: true})
         .should('have.value', 'disabled error checking')
   })
+  it('C4966 testing screenshot upload on fail ', () => {
+    // Failing test for trigger cypress screenshot
+    cy.get('.action-email')
+        .type('fake@email.com').should('have.value', 'NOT_fake@email.com')
+
+
+  })
+
+    it('C4950 testing screenshot upload on fail ', () => {
+    // Failing test for trigger cypress screenshot
+    cy.get('.action-email')
+        .type('fake@email.com').should('have.value', 'NOT_fake2@email.com')
+
+
+  })
+
 })
