@@ -1,0 +1,21 @@
+{
+  "baseUrl": "https://www.adjust.com/",
+  "testFiles": "**/*.{feature,features}",
+  "screenshotsFolder": "cypress/screenshots",
+  "videosFolder": "results/videos",
+  "viewportWidth": 1440,
+  "viewportHeight": 900,
+  "chromeWebSecurity": false,
+  "retries": {
+    "runMode": 2,
+    "openMode": 2
+  },
+  "reporter": "cypress-testrail-reporter",
+  "reporterOptions": {
+    "host": "https://adjust.testrail.io",
+    "projectId": 12,
+    "suiteId": 1,
+    "allowFailedScreenshotUpload": true
+  },
+  "defaultCommandTimeout": 20000
+}

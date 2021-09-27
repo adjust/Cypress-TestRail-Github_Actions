@@ -9,7 +9,7 @@ while IFS= read -r line; do
    export CYPRESS_ENV="testRailSuiteId=${testrailId}"
    export CYPRESS_SPEC="${spec}"
 
-   npx cypress run --spec $CYPRESS_SPEC --env $CYPRESS_ENV
+   npx cypress run --spec $CYPRESS_SPEC --env $CYPRESS_ENV --config-file cypress-github-actions.json
    exit_code=$((exit_code + $(echo $?)))
 done < test_cases.txt
 exit $exit_code

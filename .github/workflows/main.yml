@@ -4,19 +4,19 @@ on:
   workflow_dispatch:
     inputs:
       repo:
-        description: 'Repository that triggers the event'
+        description: "Repository that triggers the event"
         required: false
       user:
-        description: 'User that triggers the event'
+        description: "User that triggers the event"
         required: false
       run_id:
-        description: 'Workflow run ID that triggers the event'
+        description: "Workflow run ID that triggers the event"
         required: false
 
 env:
   SLACK_WEBHOOK_URL: ${{ secrets.AUTOMATE_SLACK_WEBHOOK }}
-  CYPRESS_TESTRAIL_REPORTER_USERNAME: ${{ secrets.TESTRAIL_USERNAME }}
-  CYPRESS_TESTRAIL_REPORTER_PASSWORD: ${{ secrets.TESTRAIL_PASSWORD }}
+  CYPRESS_TESTRAIL_REPORTER_USERNAME: ${{ secrets.AUTOMATE_TESTRAIL_USERNAME }}
+  CYPRESS_TESTRAIL_REPORTER_PASSWORD: ${{ secrets.AUTOMATE_TESTRAIL_PASSWORD }}
 
 jobs:
   cancel-running-e2e:
@@ -52,6 +52,16 @@ jobs:
         with:
           install: false
           command: bash run_tests.sh
+
+      - name: Archive results
+        uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: e2e-results
+          path: |
+            e2e/results/screenshots/*
+            e2e/results/videos/*
+          retention-days: 3
 
       - name: Send Slack notification
         if: github.event.inputs.repo && failure()
