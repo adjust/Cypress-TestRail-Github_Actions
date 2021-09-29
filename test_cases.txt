@@ -1,1 +1,1 @@
-48:cypress/integration/simple_tests/*.js
+48:cypress/integration/SimpleTest/*.feature

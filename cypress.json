@@ -1,9 +1,16 @@
 {
-"reporter": "cypress-testrail-reporter",
+  "reporter": "mochawesome",
   "reporterOptions": {
-    "host": "https://adjust.testrail.io",
-    "projectId": 12,
-    "suiteId": 1,
-    "allowFailedScreenshotUpload": true
-  }
+    "charts": true,
+    "overwrite": false,
+    "html": false,
+    "json": true,
+    "reportDir": "results/reports"
+  },
+  "testFiles": "**/*.{feature,features}",
+  "baseUrl": "https://www.adjust.com/",
+  "viewportWidth": 1920,
+  "viewportHeight": 1080,
+  "defaultCommandTimeout": 20000,
+  "pageLoadTimeout": 80000
 }

@@ -1,8 +1,22 @@
 {
-  "devDependencies": {
-    "cypress": "^7.7.0"
+  "scripts": {
+    "start": "cypress open",
+    "test": "cypress run"
   },
   "dependencies": {
-    "cypress-testrail-reporter": "github:adjust/cypress-testrail-reporter"
+    "@cypress/webpack-preprocessor": "^4.1.0",
+    "@types/cypress-cucumber-preprocessor": "^4.0.0",
+    "cypress": "^8.4.1",
+    "cypress-cucumber-preprocessor": "^4.2.0",
+    "eslint-plugin-cypress": "^2.12.1",
+    "cypress-testrail-reporter": "git://github.com/adjust/cypress-testrail-reporter",
+    "mocha": "^9.1.1",
+    "mochawesome": "^6.2.2",
+    "mochawesome-merge": "^4.2.0",
+    "mochawesome-report-generator": "^5.2.0",
+    "prettier": "^2.4.1",
+    "ts-loader": "^8.0.14",
+    "typescript": "^4.1.3",
+    "webpack": "^4.39.3"
   }
 }
