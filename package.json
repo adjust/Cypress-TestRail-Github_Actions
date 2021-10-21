@@ -11,7 +11,7 @@
     "eslint-plugin-cypress": "^2.12.1",
     "cypress-testrail-reporter": "git://github.com/adjust/cypress-testrail-reporter",
     "mocha": "^9.1.1",
-    "mochawesome": "^6.2.2",
+    "mochawesome": "^6.3.0",
     "mochawesome-merge": "^4.2.0",
     "mochawesome-report-generator": "^5.2.0",
     "prettier": "^2.4.1",
